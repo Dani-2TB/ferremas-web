@@ -3,5 +3,5 @@ from .views import ApiRoot
 
 urlpatterns = [
     path('', ApiRoot.as_view(), name='api-root'),
-    path('cambio/', include('api.exchange.urls'))
+    path('productos/', include('api.productos.urls')),
 ]

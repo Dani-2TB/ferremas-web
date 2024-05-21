@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ferreteria',
     'rest_framework',
-    'api.exchange'
+    'api.productos'
 ]
 
 MIDDLEWARE = [

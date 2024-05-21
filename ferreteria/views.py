@@ -4,6 +4,9 @@ from .models import CategoriaProducto, Producto
 from .forms import ProductFrom
 from django.contrib.auth.decorators import login_required
 
+from .helpers import create_alert, create_moneda
+
+# Vistas principales
 def index(request):
   context = {}
   return render(request,'ferreteria/index.html', context)
@@ -16,11 +19,10 @@ def contacto(request):
   context = {}
   return render(request,'ferreteria/contact.html', context)
 
+from api.productos.functions import obtener_valor_dolar
 
-import requests
-from math import floor
-from bcchapi import Siete
-from datetime import date
+
+# Vistas Productos
 def productos(request):
   moneda = create_moneda(request)
   context = {"moneda": moneda}
@@ -36,27 +38,7 @@ def productos(request):
   qs_productos = Producto.objects.all()
 
   if moneda == 'usd':
-    user = 'dan.ocaranza@duocuc.cl'
-    password = 'Duoc2024'
-
-    fecha_hoy = date.today()
-    dias_atras = 1
-    fecha_inicio = fecha_hoy.replace(day = fecha_hoy.day - dias_atras)
-    id_serie = 'F073.TCO.PRE.Z.D'
-
-    siete = Siete(user,password)
-
-    df_serie = siete.cuadro(
-        series = [id_serie],
-        nombres = ['value'],
-        desde = fecha_inicio.isoformat(),
-        hasta = fecha_hoy.isoformat()
-    )
-    
-    try:
-        valor = round(df_serie['value'].aggregate('mean'))
-    except ValueError:
-        valor = 1
+    valor = obtener_valor_dolar()
     if valor > 0:
       valor_conversion = valor
 
@@ -132,19 +114,7 @@ def editar_producto(request, pk):
   context.update({"form":form})
   return render(request, "productos/formulario_producto.html" , context)
 
-def create_alert(type,message):
-  return {"type": type, "message": message}
-
-
-def create_moneda(request):
-  try:
-    moneda = request.session["moneda"]
-  except KeyError:
-    request.session["moneda"] = "clp"
-    moneda = request.session["moneda"]
-  
-  return moneda
-
+# Vistas Auxiliares
 def cambiar_moneda(request, new):
   request.session["moneda"] = new
   return redirect('ferreteria-productos')

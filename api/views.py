@@ -4,4 +4,4 @@ from rest_framework import status
 
 class ApiRoot(APIView):
     def get(self, request):
-        return Response({"detail":"Esta es la raiz de la API!"})
+        return Response({"detail":"Esta es la raiz de la API!"},status.HTTP_200_OK)
