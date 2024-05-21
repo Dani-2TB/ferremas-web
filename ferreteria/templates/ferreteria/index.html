@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Inicio {% endblock title %}
+
+{% block page_title %}
+  Ferretería Ferremás
+{% endblock page_title %}
+{% block page_subtitle %}
+  Bicicletas, repuestos, pinturas y más, a tu medida
+{% endblock page_subtitle %}
+
+{% block content %}
+  <section>
+    <div class="row mb-5">
+      <div class="col">
+        <h1 class="display-1">Una breve historia de nosotros</h1>
+        <p class="lead justify-txt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, iste fugit. Vel
+          quasi unde aspernatur deserunt quam fuga, eaque adipisci ab explicabo quia reiciendis aliquid voluptas maiores
+          dolore quo ratione inventore. Ratione quasi ex ab deserunt voluptatem repellat magni accusantium quis at
+          debitis, quisquam voluptatum voluptate consectetur perferendis libero iure cumque nihil exercitationem maxime
+          sed, nam perspiciatis nesciunt nostrum? Illum?</p>
+      </div>
+    </div>
+    <div class="row ">
+      <div class="col-lg-6 col-sm-12">
+        <img class="img main-img rounded" src="{% static 'imagenes/main.jpg' %}" alt="Imagen">
+      </div>
+      <div class="col-lg-6 col-sm-12">
+        <h4 class="display-5 fw-bold">Nuestra mision</h4>
+        <p class="fw-light justify-txt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut, exercitationem qui.
+          Veritatis aliquam animi nam tenetur aut error optio cum. Quia accusantium odit, quo veritatis tempore labore
+          ipsam consequuntur id. Dolor sapiente beatae quaerat pariatur tenetur necessitatibus dignissimos maxime modi
+          ratione possimus qui nisi eum molestiae aspernatur quod aliquid eos ab assumenda reiciendis quos, ducimus
+          maiores. Delectus libero magnam sapiente obcaecati sed sit similique, eveniet necessitatibus culpa cum tenetur
+          perspiciatis enim, mollitia doloribus voluptas officia quod in accusamus, qui voluptate. Vero expedita
+          necessitatibus architecto mollitia explicabo, neque ut nisi ratione earum, sequi doloremque quis suscipit modi
+          tenetur iusto nihil aliquam!</p>
+      </div>
+    </div>
+    <hr class="border-2 opacity-50">
+  </section>
+  <!--Servicios-->
+  <section>
+    <div class="row px-5 pb-5">
+      <h1 class="display d-block pb-5 text-center">Productos y Servicios</h1>
+      <div class="col-md-6 pb-3">
+        <img class="img-fluid d-block mx-auto service-img mb-2" src="{% static 'imagenes/inicio/herramientas.png' %}">
+        <a href="{% url "ferreteria-productos" %}" class="link-servicio fw-bold d-block text-center fs-1">Venta de productos</a>
+      </div>
+      <div class="col-md-6 pb-3">
+        <img class="img-fluid d-block mx-auto service-img mb-2" src="{% static 'imagenes/inicio/envio.png' %}">
+        <a href="{% url "ferreteria-productos" %}" class="link-servicio fw-bold d-block text-center fs-1">Despacho a Domicilio</a>
+      </div>
+      <div class="col-lg-12 py-3">
+        <img class="img-fluid d-block mx-auto service-img mb-2" src="{% static 'imagenes/inicio/asesoramiento.png' %}">
+        <a class="link-servicio fw-bold d-block text-center fs-1" href="{% url "ferreteria-contacto" %}">Asesorías</a>
+      </div>
+    </div>
+  </section>
+{% endblock content %}
