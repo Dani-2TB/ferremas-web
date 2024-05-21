@@ -36,22 +36,35 @@
           </li>
         </ul>
         <ul class="navbar-nav float-end-lg mb-2 me-2 mb-lg-0">
+          {% if moneda %}
+          <li class="nav_item">
+            <div class="dropdown">
+              <a class="btn btn-dark dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                $ {{ moneda | upper }}
+              </a>
+              <ul class="dropdown-menu" data-bs-theme="dark">
+                <li><a class="dropdown-item" href="{% url 'cambiar-moneda' new="clp" %}" class="nav-link">🇨🇱 Pésos</a></li>
+                <li><a class="dropdown-item" href="{% url 'cambiar-moneda' new="usd" %}" class="nav-link">🇺🇸 Dólares</a></li> 
+              </ul>
+            </div>
+          </li>
+          {% endif %}
           {% if user.is_authenticated %}
-            <li class="nav_item">
-              <div class="dropdown">
-                <a class="btn btn-dark dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  {{ user.username }}
-                </a>
-                <ul class="dropdown-menu" data-bs-theme="dark">
-                  <li><a class="dropdown-item" href="">Mi cuenta</a></li>
-                  <li><a class="dropdown-item" href="{% url 'logout' %}" class="nav-link">Logout</a></li> 
-                </ul>
-              </div>
-            </li>
+          <li class="nav_item">
+            <div class="dropdown">
+              <a class="btn btn-dark dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {{ user.username }}
+              </a>
+              <ul class="dropdown-menu" data-bs-theme="dark">
+                <li><a class="dropdown-item" href="">Mi cuenta</a></li>
+                <li><a class="dropdown-item" href="{% url 'logout' %}" class="nav-link">Logout</a></li> 
+              </ul>
+            </div>
+          </li>
           {% else %}
-            <li>
-              <a class="nav-link" href="{% url 'login' %}">Login</a>
-            </li>
+          <li>
+            <a class="nav-link" href="{% url 'login' %}">Login</a>
+          </li>
           {% endif %}
           </li>
         </ul>
@@ -73,21 +86,20 @@
 <footer>
   <div class="bg-secondary-subtle footer-img shadow-sm">
     <div class="container-fluid footer-mask py-5">
-      <div class="container">
-        <div class="row text-white">
+      <div class="container py-5">
+        <div class="row text-white py-5">
           <div class="col-lg-3 col-md-12 py-3 ">
             <img class="img footer-logo mx-auto d-block align-middle" src="{% static 'logo.png' %}" alt="">
           </div>
-          <div class="col-lg-5 col-md-6 py-3">
+          <div class="col-lg-4 col-md-6 py-3">
             <h3 class="fw-bold d-block text-uppercase text-center">Ferretería Ferremás</h3>
             <a href="{% url 'ferreteria-about' %}" class="text-white d-block text-center">Sobre Nosotros</a>
             <a href="{% url 'ferreteria-contacto' %}" class="text-white d-block text-center">Contacto</a>
           </div>
-          <div class="col-lg-3 col-md-6 py-3">
+          <div class="col-lg-4 col-md-6 py-3">
             <h3 class="fw-bold d-block text-uppercase text-center">Productos y Servicios</h3>
-            <a href="" class="text-white d-block text-center">Mantenimiento</a>
-            <a href="" class="text-white d-block text-center">Pintura</a>
-            <a href="" class="text-white d-block text-center">Repuestos</a>
+            <a href="" class="text-white d-block text-center">Ventas</a>
+            <a href="" class="text-white d-block text-center">Asesoramiento</a>
           </div>
         </div>
       </div>

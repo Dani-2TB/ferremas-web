@@ -11,4 +11,3 @@ def money(string):
   regex = "(?=([0-9]{3})+$)"
   parsed = re.sub(regex,'.',string)
   return f"${parsed.strip('.')}"
-
