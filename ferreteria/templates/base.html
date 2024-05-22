@@ -43,8 +43,8 @@
                 $ {{ moneda | upper }}
               </a>
               <ul class="dropdown-menu" data-bs-theme="dark">
-                <li><a class="dropdown-item" href="{% url 'cambiar-moneda' new="clp" %}" class="nav-link">🇨🇱 Pésos</a></li>
-                <li><a class="dropdown-item" href="{% url 'cambiar-moneda' new="usd" %}" class="nav-link">🇺🇸 Dólares</a></li> 
+                <li><a class="dropdown-item" href="{% url 'cambiar-moneda' new="clp" %}?next={{ request.path }}" class="nav-link">🇨🇱 Pésos</a></li>
+                <li><a class="dropdown-item" href="{% url 'cambiar-moneda' new="usd" %}?next={{ request.path }}" class="nav-link">🇺🇸 Dólares</a></li> 
               </ul>
             </div>
           </li>

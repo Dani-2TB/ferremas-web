@@ -8,7 +8,8 @@ from .helpers import create_alert, create_moneda
 
 # Vistas principales
 def index(request):
-  context = {}
+  moneda = create_moneda(request)
+  context = {"moneda": moneda}
   return render(request,'ferreteria/index.html', context)
 
 def about(request):
@@ -19,8 +20,7 @@ def contacto(request):
   context = {}
   return render(request,'ferreteria/contact.html', context)
 
-from api.productos.functions import obtener_valor_dolar
-
+from .helpers import obtener_valor_dolar
 
 # Vistas Productos
 def productos(request):
@@ -115,6 +115,7 @@ def editar_producto(request, pk):
   return render(request, "productos/formulario_producto.html" , context)
 
 # Vistas Auxiliares
+from django.urls import reverse
 def cambiar_moneda(request, new):
   request.session["moneda"] = new
-  return redirect('ferreteria-productos')
+  return redirect(request.GET.get('next','').strip(''))
